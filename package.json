@@ -1,0 +1,7 @@
+{
+	"dependencies": {
+		"cjstoesm": "^3.0.0",
+		"sql.js": "^1.13.0"
+	},
+	"type": "module"
+}

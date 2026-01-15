@@ -1,0 +1,4 @@
+/* Use system monospace fonts - no custom font fallback */
+body {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Courier New', monospace !important;
+}
