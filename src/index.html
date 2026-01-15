@@ -6,6 +6,15 @@
     <title>Browser IDE</title>
     <link rel="stylesheet" href="../lib/bootstrap.css">
     <link rel="stylesheet" href="../lib/jetbrainsmono.css">
+    <!-- Google tag (gtag.js) -->
+   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P8QTWB8GM"></script>
+   <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+
+     gtag('config', 'G-6P8QTWB8GM');
+   </script>
     <style>
         * {
             box-sizing: border-box;
@@ -127,20 +136,70 @@
             <button id="clear-btn">🗑️ Clear</button>
         </div>
         
-        <div class="editor-section">
-            <div id="monaco-editor"></div>
-            <div class="output-panel">
-                <div class="output-header">Terminal Output</div>
-                <div id="terminal"></div>
+        <div class="main-content">
+            <!-- VSCode-like Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-icons">
+                    <div class="sidebar-icon active" data-panel="files" title="Files">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                            <polyline points="13 2 13 9 20 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="sidebar-icon" data-panel="search" title="Search">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </div>
+                    <div class="sidebar-icon" data-panel="git" title="Git">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="6" x2="12" y2="12"></line>
+                            <line x1="12" y1="12" x2="16" y2="12"></line>
+                        </svg>
+                    </div>
+                    <div class="sidebar-icon" data-panel="debug" title="Debug">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="1"></circle>
+                            <path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m5.08 5.08l4.24 4.24M1 12h6m6 0h6M4.22 19.78l4.24-4.24m5.08-5.08l4.24-4.24"></path>
+                        </svg>
+                    </div>
+                    <div class="sidebar-icon" data-panel="extensions" title="Extensions">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <square x="3" y="3" width="7" height="7"></square>
+                            <square x="14" y="3" width="7" height="7"></square>
+                            <square x="14" y="14" width="7" height="7"></square>
+                            <square x="3" y="14" width="7" height="7"></square>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Editor Area -->
+            <div class="editor-main">
+                <div id="monaco-editor"></div>
+                <div class="output-panel">
+                    <div class="output-header">Terminal Output</div>
+                    <div id="terminal"></div>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Third-party libraries -->
-    <script src="../lib/brython.js"></script>
-    <script src="../lib/brython_stdlib.js"></script>
+    <script type="text/javascript">
+        console.log('Loading Brython...');
+    </script>
+    <script type="text/javascript" src="../lib/brython.js"></script>
+    <script type="text/javascript">
+        console.log('Brython loaded:', typeof Brython);
+    </script>
+    <script type="text/javascript" src="../lib/brython_stdlib.js"></script>
+    <script type="text/javascript">
+        console.log('Brython stdlib loaded');
+    </script>
     <script src="../lib/tailwind.js"></script>
-    <script src="../lib/sql-wasm.js"></script>
     
     <!-- Monaco Editor from jsDelivr CDN -->
     <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.50.0/min/vs/loader.min.js"></script>

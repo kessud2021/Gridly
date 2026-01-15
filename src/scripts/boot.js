@@ -9,7 +9,6 @@ console.log('🚀 Boot sequence starting...');
 const IDE = {
     editor: null,
     terminal: null,
-    db: null,
     isReady: false,
     logs: []
 };
@@ -121,66 +120,41 @@ function initMonaco() {
 }
 
 // ============================================================================
-// Initialize SQL.js
-// ============================================================================
-async function initSqlJs() {
-    return new Promise((resolve) => {
-        console.log('Initializing SQL.js...');
-        
-        if (typeof initSqlJs !== 'undefined') {
-            // Configure SQL.js with correct WASM path
-            initSqlJs({
-                locateFile: (file) => {
-                    // Resolve WASM file path relative to HTML
-                    const basePath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
-                    return basePath + '/../lib/' + file;
-                }
-            }).then((SQL) => {
-                IDE.db = new SQL.Database();
-                console.log('✓ SQL.js initialized');
-                resolve();
-            }).catch((err) => {
-                console.error('✗ SQL.js initialization failed:', err);
-                resolve();
-            });
-        } else {
-            console.warn('⚠ initSqlJs not available');
-            resolve();
-        }
-    });
-}
-
-// ============================================================================
 // Initialize Brython
 // ============================================================================
 async function initBrython() {
     return new Promise((resolve) => {
-        console.log('Initializing Brython...');
+        console.log('Waiting for Brython...');
+        console.log('Brython available:', typeof Brython);
         
-        if (typeof Brython !== 'undefined') {
-            try {
-                // Set Brython path
-                if (typeof __BRYTHON__ !== 'undefined') {
-                    __BRYTHON__.brython_path = '../lib/';
+        let attempts = 0;
+        const checkBrython = setInterval(() => {
+            console.log(`[Attempt ${attempts}] Brython:`, typeof Brython);
+            
+            if (typeof Brython !== 'undefined') {
+                clearInterval(checkBrython);
+                try {
+                    // Initialize Brython
+                    Brython({
+                        debug: 0,
+                        hash: 'none'
+                    });
+                    
+                    console.log('✓ Brython initialized');
+                    resolve();
+                } catch (err) {
+                    console.error('✗ Brython initialization failed:', err);
+                    resolve();
                 }
-                
-                // Configure stdout/stderr to send to terminal
-                Brython({
-                    debug: 0,
-                    hash: 'none',
-                    static_stdlib_modules: true
-                });
-                
-                console.log('✓ Brython initialized');
-                resolve();
-            } catch (err) {
-                console.error('✗ Brython initialization failed:', err);
-                resolve();
+            } else {
+                attempts++;
+                if (attempts > 200) {  // Increased from 100 to 200 (10 seconds)
+                    console.warn('⚠ Brython timeout - not available after 10 seconds');
+                    clearInterval(checkBrython);
+                    resolve();
+                }
             }
-        } else {
-            console.warn('⚠ Brython not available');
-            resolve();
-        }
+        }, 50);
     });
 }
 
@@ -188,10 +162,7 @@ async function initBrython() {
 // Run Python Code
 // ============================================================================
 async function runPython(code) {
-    if (!IDE.db) {
-        IDE.terminal.error('SQL.js not initialized');
-        return;
-    }
+    
 
     IDE.terminal.log('═══════════════════════════════════');
     IDE.terminal.info('Executing Python code...');
@@ -270,7 +241,6 @@ async function boot() {
         
         await initMonaco();
         await initBrython();
-        await initSqlJs();
         
         setupEventListeners();
         
