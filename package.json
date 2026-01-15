@@ -1,7 +1,45 @@
 {
+	"name": "browser-ide",
+	"version": "1.0.0",
+	"description": "A browser-based IDE with Monaco editor, file management, and git history",
+	"main": "dist/index.js",
+	"scripts": {
+		"dev": "webpack serve --mode development",
+		"build": "webpack --mode production",
+		"build:dev": "webpack --mode development",
+		"build:analyze": "ANALYZE=true webpack --mode production",
+		"type-check": "tsc --noEmit",
+		"tsc:build": "tsc",
+		"tsc:watch": "tsc --watch"
+	},
+	"keywords": [
+		"ide",
+		"editor",
+		"monaco",
+		"browser"
+	],
+	"author": "",
+	"license": "MIT",
 	"dependencies": {
 		"cjstoesm": "^3.0.0",
 		"sql.js": "^1.13.0"
 	},
-	"type": "module"
+	"devDependencies": {
+		"@types/node": "^20.10.6",
+		"autoprefixer": "^10.4.16",
+		"css-loader": "^6.8.1",
+		"css-minimizer-webpack-plugin": "^5.0.1",
+		"html-webpack-plugin": "^5.6.0",
+		"mini-css-extract-plugin": "^2.7.6",
+		"postcss": "^8.4.32",
+		"postcss-loader": "^7.3.4",
+		"style-loader": "^3.3.3",
+		"terser-webpack-plugin": "^5.3.9",
+		"ts-loader": "^9.5.1",
+		"typescript": "^5.3.3",
+		"webpack": "^5.104.1",
+		"webpack-bundle-analyzer": "^4.10.1",
+		"webpack-cli": "^5.1.4",
+		"webpack-dev-server": "^4.15.1"
+	}
 }

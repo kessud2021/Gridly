@@ -1,0 +1,34 @@
+// Language mappings for Monaco editor
+export const LANGUAGE_MAP = {
+    'html': 'html', 'htm': 'html', 'xml': 'xml',
+    'css': 'css', 'scss': 'scss', 'sass': 'scss', 'less': 'less',
+    'js': 'javascript', 'jsx': 'javascript', 'mjs': 'javascript',
+    'ts': 'typescript', 'tsx': 'typescript',
+    'json': 'json', 'jsonc': 'jsonc',
+    'yml': 'yaml', 'yaml': 'yaml',
+    'py': 'python', 'pyw': 'python', 'pyx': 'python',
+    'php': 'php', 'java': 'java', 'cs': 'csharp',
+    'go': 'go', 'rs': 'rust', 'c': 'c', 'cpp': 'cpp',
+    'rb': 'ruby', 'sh': 'shell', 'bash': 'shell',
+    'sql': 'sql', 'md': 'markdown', 'rst': 'rst',
+    'default': 'plaintext'
+};
+
+// File icons using Nerd Font Unicode
+export const FILE_ICONS = {
+    'html': '\ue60a', 'htm': '\ue60a', 'xml': '\uf072',
+    'css': '\ue61d', 'scss': '\ue61d', 'sass': '\ue61d', 'less': '\ue61d',
+    'js': '\ue74e', 'jsx': '\ue74e', 'mjs': '\ue74e',
+    'ts': '\ue628', 'tsx': '\ue628',
+    'json': '\ue60b', 'yml': '\ue481', 'yaml': '\ue481',
+    'vue': '\ue6a0', 'svelte': '\ue697',
+    'py': '\ue235', 'pyw': '\ue235', 'pyx': '\ue235',
+    'php': '\ue73d', 'java': '\ue738', 'cs': '\uf81a',
+    'go': '\ufa52', 'rs': '\ue7a8', 'rlib': '\ue7a8',
+    'c': '\ue61e', 'h': '\ue61e', 'cpp': '\ue61d', 'cc': '\ue61d',
+    'rb': '\ue791', 'erb': '\ue791',
+    'sh': '\uf489', 'bash': '\uf489', 'zsh': '\uf489',
+    'sql': '\uf1c0', 'md': '\ue60f', 'markdown': '\ue60f',
+    'pdf': '\ue60e', 'txt': '\uf15c', 'rtf': '\uf15c',
+    'default': '\uf15c'
+};

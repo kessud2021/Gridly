@@ -10,17 +10,29 @@ $color_9: #9cdcfe;
 $font-family_1: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Courier New', monospace;
 $font-family_2: inherit;
 $font-family_3: 'JetBrainsMono Nerd Font', monospace;
+$font-family_4: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-family_5: 'Monaco', 'Menlo', monospace;
+$font-family_6: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
 $border-color_1: #4178d2;
 $border-left-color_1: #4178d2;
 
 /* Top Menu Bar */
 /* Search Panel */
 /* Git Panel */
+/* Top Menu Bar */
+/* Context Menu */
 * {
+	box-sizing: border-box;
 	box-sizing: border-box;
 }
 body {
 	font-family: $font-family_1;
+	margin: 0;
+	padding: 0;
+	background: #1e1e1e;
+	color: $color_1;
+	overflow: hidden;
+	font-family: $font-family_4;
 	margin: 0;
 	padding: 0;
 	background: #1e1e1e;
@@ -40,8 +52,19 @@ body {
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
 }
 .top-menubar {
+	height: 35px;
+	background: #3c3c3c;
+	border-bottom: 1px solid #3e3e42;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 12px;
+	font-size: 12px;
 	height: 35px;
 	background: #3c3c3c;
 	border-bottom: 1px solid #3e3e42;
@@ -54,8 +77,12 @@ body {
 .menu-group {
 	display: flex;
 	gap: 12px;
+	display: flex;
+	gap: 12px;
 }
 .menu-group-right {
+	display: flex;
+	gap: 12px;
 	display: flex;
 	gap: 12px;
 }
@@ -67,11 +94,24 @@ body {
 	font-size: 12px;
 	padding: 4px 8px;
 	transition: color 0.2s;
+	background: transparent;
+	border: none;
+	color: $color_2;
+	cursor: pointer;
+	font-size: 12px;
+	padding: 4px 8px;
+	transition: all 0.2s;
 	&:hover {
 		color: $color_3;
+		color: $color_3;
+		background: rgba(255, 255, 255, 0.1);
 	}
 }
 .menubar-title {
+	flex: 1;
+	text-align: center;
+	font-size: 11px;
+	color: $color_4;
 	flex: 1;
 	text-align: center;
 	font-size: 11px;
@@ -85,7 +125,15 @@ body {
 	font-size: 16px;
 	padding: 4px 8px;
 	transition: color 0.2s;
+	background: transparent;
+	border: none;
+	color: $color_2;
+	cursor: pointer;
+	font-size: 16px;
+	padding: 4px 8px;
+	transition: color 0.2s;
 	&:hover {
+		color: $color_3;
 		color: $color_3;
 	}
 }
@@ -97,6 +145,7 @@ body {
 	display: flex;
 	align-items: center;
 	gap: 10px;
+	display: none;
 	h1 {
 		margin: 0;
 		font-size: 16px;
@@ -122,6 +171,10 @@ body {
 	min-height: 0;
 	display: flex;
 	background: #1e1e1e;
+	flex: 1;
+	min-height: 0;
+	display: flex;
+	background: #1e1e1e;
 }
 .sidebar {
 	width: 50px;
@@ -131,8 +184,19 @@ body {
 	flex-direction: column;
 	align-items: center;
 	padding: 8px 0;
+	width: 50px;
+	background: #333333;
+	border-right: 1px solid #3e3e42;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 8px 0;
 }
 .sidebar-icons {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
@@ -148,7 +212,19 @@ body {
 	color: $color_4;
 	border-left: 3px solid transparent;
 	transition: all 0.2s ease;
+	width: 50px;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	color: $color_4;
+	border-left: 3px solid transparent;
+	transition: all 0.2s ease;
+	font-size: 20px;
 	&:hover {
+		color: $color_1;
+		background: rgba(255, 255, 255, 0.05);
 		color: $color_1;
 		background: rgba(255, 255, 255, 0.05);
 	}
@@ -163,8 +239,17 @@ body {
 	color: $color_3;
 	background: rgba(65, 120, 210, 0.3);
 	border-left-color: $border-left-color_1;
+	color: $color_3;
+	background: rgba(65, 120, 210, 0.3);
+	border-left-color: $border-left-color_1;
 }
 .sidebar-panel {
+	width: 250px;
+	background: #252526;
+	border-right: 1px solid #3e3e42;
+	display: none;
+	flex-direction: column;
+	overflow: hidden;
 	width: 250px;
 	background: #252526;
 	border-right: 1px solid #3e3e42;
@@ -174,6 +259,7 @@ body {
 }
 .sidebar-panel.active {
 	display: flex;
+	display: flex;
 }
 .sidebar-panel-header {
 	padding: 12px;
@@ -181,7 +267,16 @@ body {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	padding: 12px;
+	border-bottom: 1px solid #3e3e42;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	h2 {
+		margin: 0;
+		font-size: 13px;
+		font-weight: 600;
+		color: $color_2;
 		margin: 0;
 		font-size: 13px;
 		font-weight: 600;
@@ -196,11 +291,22 @@ body {
 	font-size: 18px;
 	padding: 0 6px;
 	transition: color 0.2s;
+	background: transparent;
+	border: none;
+	color: $color_4;
+	cursor: pointer;
+	font-size: 18px;
+	padding: 0 6px;
+	transition: color 0.2s;
 	&:hover {
+		color: $color_3;
 		color: $color_3;
 	}
 }
 .file-list {
+	flex: 1;
+	overflow-y: auto;
+	padding: 4px 0;
 	flex: 1;
 	overflow-y: auto;
 	padding: 4px 0;
@@ -215,10 +321,23 @@ body {
 	color: $color_4;
 	font-size: 12px;
 	transition: all 0.2s;
+	padding: 6px 8px;
+	border-left: 3px solid transparent;
+	cursor: pointer;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: $color_4;
+	font-size: 12px;
+	font-family: $font-family_5;
+	transition: all 0.2s;
 	&:hover {
 		background: rgba(255, 255, 255, 0.05);
 		color: $color_1;
+		background: rgba(255, 255, 255, 0.05);
+		color: $color_1;
 		.file-actions {
+			opacity: 1;
 			opacity: 1;
 		}
 	}
@@ -227,12 +346,21 @@ body {
 	border-left-color: $border-left-color_1;
 	background: rgba(65, 120, 210, 0.2);
 	color: $color_3;
+	border-left-color: $border-left-color_1;
+	background: rgba(65, 120, 210, 0.2);
+	color: $color_3;
 }
 .file-name {
 	flex: 1;
 	word-break: break-all;
+	flex: 1;
+	word-break: break-all;
+	user-select: none;
 }
 .file-actions {
+	display: flex;
+	gap: 4px;
+	opacity: 0;
 	display: flex;
 	gap: 4px;
 	opacity: 0;
@@ -245,7 +373,15 @@ body {
 	font-size: 11px;
 	padding: 2px 4px;
 	transition: color 0.2s;
+	background: transparent;
+	border: none;
+	color: $color_4;
+	cursor: pointer;
+	font-size: 11px;
+	padding: 2px 4px;
+	transition: color 0.2s;
 	&:hover {
+		color: $color_3;
 		color: $color_3;
 	}
 }
@@ -257,15 +393,28 @@ body {
 	font-size: 12px;
 	font-family: $font-family_2;
 	flex: 1;
+	background: #3c3c3c;
+	border: 1px solid #4178d2;
+	color: $color_1;
+	padding: 2px 4px;
+	font-size: 12px;
+	font-family: $font-family_2;
+	flex: 1;
 	&:focus {
+		outline: none;
 		outline: none;
 	}
 }
 .file-icon {
 	margin-right: 4px;
 	font-size: 14px;
+	margin-right: 4px;
+	font-size: 14px;
+	width: 16px;
+	text-align: center;
 }
 .search-container {
+	padding: 8px;
 	padding: 8px;
 }
 .search-input {
@@ -277,7 +426,17 @@ body {
 	font-size: 12px;
 	font-family: $font-family_2;
 	border-radius: 3px;
+	width: 100%;
+	background: #3c3c3c;
+	border: 1px solid #3e3e42;
+	color: $color_1;
+	padding: 6px 8px;
+	font-size: 12px;
+	font-family: $font-family_2;
+	border-radius: 3px;
 	&:focus {
+		outline: none;
+		border-color: $border-color_1;
 		outline: none;
 		border-color: $border-color_1;
 	}
@@ -286,10 +445,17 @@ body {
 	padding: 8px;
 	flex: 1;
 	overflow-y: auto;
+	padding: 8px;
+	flex: 1;
+	overflow-y: auto;
 }
 .git-section {
 	margin-bottom: 16px;
+	margin-bottom: 16px;
 	h3 {
+		margin: 0 0 8px 0;
+		font-size: 12px;
+		color: $color_2;
 		margin: 0 0 8px 0;
 		font-size: 12px;
 		color: $color_2;
@@ -306,7 +472,16 @@ body {
 	margin-bottom: 6px;
 	cursor: pointer;
 	transition: all 0.2s;
+	background: #2d2d2d;
+	border: 1px solid #3e3e42;
+	border-radius: 3px;
+	padding: 6px;
+	margin-bottom: 6px;
+	cursor: pointer;
+	transition: all 0.2s;
 	&:hover {
+		background: #3c3c3c;
+		border-color: $border-color_1;
 		background: #3c3c3c;
 		border-color: $border-color_1;
 	}
@@ -314,13 +489,24 @@ body {
 .git-commit-msg {
 	color: $color_1;
 	word-break: break-all;
+	color: $color_1;
+	word-break: break-all;
+	font-size: 11px;
 }
 .git-commit-date {
 	color: $color_4;
 	font-size: 10px;
 	margin-top: 4px;
+	color: $color_4;
+	font-size: 10px;
+	margin-top: 4px;
 }
 .editor-main {
+	flex: 1;
+	min-height: 0;
+	display: flex;
+	gap: 8px;
+	padding: 8px;
 	flex: 1;
 	min-height: 0;
 	display: flex;
@@ -332,8 +518,18 @@ body {
 	border: 1px solid #3e3e42;
 	border-radius: 4px;
 	overflow: hidden;
+	flex: 1;
+	border: 1px solid #3e3e42;
+	border-radius: 4px;
+	overflow: hidden;
 }
 .output-panel {
+	width: 300px;
+	border: 1px solid #3e3e42;
+	border-radius: 4px;
+	display: flex;
+	flex-direction: column;
+	background: #1e1e1e;
 	width: 300px;
 	border: 1px solid #3e3e42;
 	border-radius: 4px;
@@ -348,6 +544,15 @@ body {
 	font-size: 12px;
 	font-weight: bold;
 	color: $color_2;
+	padding: 8px 12px;
+	background: #252526;
+	border-bottom: 1px solid #3e3e42;
+	font-size: 12px;
+	font-weight: bold;
+	color: $color_2;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 #terminal {
 	flex: 1;
@@ -359,8 +564,19 @@ body {
 	color: $color_1;
 	white-space: pre-wrap;
 	word-break: break-all;
+	flex: 1;
+	overflow-y: auto;
+	padding: 10px;
+	font-size: 12px;
+	font-family: $font-family_6;
+	background: #1e1e1e;
+	color: $color_1;
+	white-space: pre-wrap;
+	word-break: break-all;
 }
 .terminal-line {
+	margin: 2px 0;
+	line-height: 1.4;
 	margin: 2px 0;
 	line-height: 1.4;
 }
@@ -375,4 +591,80 @@ body {
 }
 .info {
 	color: $color_9;
+}
+.menu-item.active {
+	background: rgba(255, 255, 255, 0.1);
+	color: $color_3;
+}
+.context-menu {
+	position: fixed;
+	background: #252526;
+	border: 1px solid #3e3e42;
+	border-radius: 4px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+	z-index: 10000;
+	min-width: 200px;
+	display: none;
+}
+.context-menu.open {
+	display: block;
+}
+.context-menu-item {
+	padding: 8px 16px;
+	color: $color_2;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	font-size: 12px;
+	user-select: none;
+	transition: all 0.1s;
+	&:hover {
+		background: #2d2d30;
+		color: $color_3;
+	}
+}
+.context-menu-item.disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+	&:hover {
+		background: transparent;
+		color: $color_2;
+	}
+}
+.context-menu-sep {
+	height: 1px;
+	background: #3e3e42;
+	margin: 4px 0;
+}
+.context-menu-shortcut {
+	margin-left: auto;
+	font-size: 11px;
+	color: $color_4;
+}
+.terminal-line.error {
+	color: $color_6;
+}
+.terminal-line.success {
+	color: $color_7;
+}
+.terminal-line.warning {
+	color: $color_8;
+}
+.terminal-line.info {
+	color: $color_9;
+}
+&::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+&::-webkit-scrollbar-track {
+	background: #1e1e1e;
+}
+&::-webkit-scrollbar-thumb {
+	background: #464647;
+	border-radius: 5px;
+	&:hover {
+		background: #595959;
+	}
 }
